@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b5cff" />
+  <link rel="manifest" href="/manifest.json" />
+  <title>Siskiyou County Administration Building Alerts</title>
+  <style>
+    :root{--bg:#f5f7fb;--card:#fff}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;margin:0;background:var(--bg);display:flex;align-items:center;justify-content:center;height:100vh}
+    .container{max-width:480px;width:100%;padding:20px;box-sizing:border-box}
+    header{text-align:center;margin-bottom:16px}
+    h1{margin:0;font-size:1.4rem;color:#111}
+    .card{background:var(--card);border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(16,24,40,0.08)}
+    .buttons{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+    .alert-button{position:relative;overflow:hidden;padding:12px;border-radius:8px;border:0;font-weight:600;cursor:pointer}
+    .alert-button .label{display:block;z-index:2;position:relative}
+    .progress{position:absolute;left:0;top:0;height:100%;width:0%;background:rgba(255,255,255,0.15);transition:width 0.08s linear}
+    .popup{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;padding:10px 16px;border-radius:8px;color:#fff;background:#333;opacity:0;pointer-events:none;transition:opacity .2s;font-weight:600}
+    .popup.show{opacity:1;pointer-events:auto}
+    footer{margin-top:12px;text-align:center;font-size:0.9rem;color:#444}
+    .install-btn{margin-top:10px;background:#fff;color:#0b5cff;border:2px solid #0b5cff;padding:8px 12px;border-radius:8px;cursor:pointer}
+
+    /* Button Colors with readable text */
+    .fire { background:#c0392b; color:#fff; } /* Red */
+    .active-shooter { background:#bdc3c7; color:#000; } /* Silver/Gray */
+    .bomb { background:#000000; color:#fff; } /* Black */
+    .hazmat { background:#e67e22; color:#fff; } /* Orange */
+    .weather { background:#27ae60; color:#fff; } /* Green */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header><h1>Siskiyou County Administration Building Staff Alerting for Emergencies</h1></header>
+    <main class="card">
+      <p>Hold a button for 1 second to send the alert.</p>
+      <div class="buttons">
+        <button class="alert-button fire" data-message="Sendalert fire admin"><span class="label">Fire/Smoke</span><span class="progress"></span></button>
+        <button class="alert-button active-shooter" data-message="Sendalert shooter admin"><span class="label">Combative Person - Active Shooter</span><span class="progress"></span></button>
+        <button class="alert-button bomb" data-message="Sendalert bomb admin"><span class="label">Bomb Threat</span><span class="progress"></span></button>
+        <button class="alert-button hazmat" data-message="Sendalert fumes admin"><span class="label">Hazardous Materials</span><span class="progress"></span></button>
+        <button class="alert-button weather" data-message="Sendalert hail admin"><span class="label">Weather/Environmental Hazard</span><span class="progress"></span></button>
+      </div>
+      <button id="installBtn" class="install-btn" style="display:none">Install App</button>
+    </main>
+    <footer>Offline-capable PWA • Created by Siskiyou OES</footer>
+  </div>
+
+  <div id="popup" class="popup">Message</div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
